@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitaSpa - Tu Oasis de Bienestar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(72, 187, 120, 0.9) 0%, rgba(56, 178, 172, 0.9) 100%);
+        }
+        
+        .nav-shadow {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="smooth-scroll bg-gray-50">
+    
+    <!-- Navegación -->
+    <nav class="bg-white fixed w-full top-0 z-50 nav-shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl sm:text-3xl font-serif font-bold text-teal-600 cursor-pointer" onclick="showPage('inicio')">VitaSpa</span>
+                </div>
+                
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8">
+                    <a onclick="showPage('inicio')" class="text-gray-700 hover:text-teal-600 transition font-medium cursor-pointer">Inicio</a>
+                    <a onclick="showPage('servicios')" class="text-gray-700 hover:text-teal-600 transition font-medium cursor-pointer">Servicios</a>
+                    <a onclick="showPage('nosotros')" class="text-gray-700 hover:text-teal-600 transition font-medium cursor-pointer">Nosotros</a>
+                    <a onclick="showPage('contacto')" class="text-gray-700 hover:text-teal-600 transition font-medium cursor-pointer">Contacto</a>
+                </div>
+                
+                <!-- Botón Móvil -->
+                <button id="menuBtn" class="md:hidden text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Menu Móvil -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-4 space-y-3">
+                <a onclick="showPage('inicio')" class="block text-gray-700 hover:text-teal-600 transition font-medium cursor-pointer">Inicio</a>
+                <a onclick="showPage('servicios')" class="block text-gray-700 hover:text-teal-600 transition font-medium cursor-pointer">Servicios</a>
+                <a onclick="showPage('nosotros')" class="block text-gray-700 hover:text-teal-600 transition font-medium cursor-pointer">Nosotros</a>
+                <a onclick="showPage('contacto')" class="block text-gray-700 hover:text-teal-600 transition font-medium cursor-pointer">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Página Inicio -->
+    <div id="inicio" class="page active">
+        <section class="pt-16">
+            <div class="relative h-screen flex items-center justify-center hero-gradient">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600')] bg-cover bg-center opacity-30"></div>
+                <div class="relative text-center text-white px-4 max-w-4xl mx-auto">
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6">Descubre tu Oasis de Bienestar</h1>
+                    <p class="text-lg sm:text-xl md:text-2xl mb-8 font-light">Renueva tu cuerpo y mente en VitaSpa</p>
+                    <a onclick="showPage('servicios')" class="inline-block bg-white text-teal-600 px-8 py-4 rounded-full font-semibold hover:bg-teal-50 transition shadow-lg text-base sm:text-lg cursor-pointer">
+                        Explorar Servicios
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Página Servicios -->
+    <div id="servicios" class="page">
+        <section class="pt-16 py-16 sm:py-20 bg-white min-h-screen">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 sm:mb-16">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-4">Nuestros Servicios</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg">Experimenta tratamientos diseñados para revitalizar tu cuerpo y equilibrar tu mente</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    <!-- Servicio 1 -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover" onclick="showServiceDetail('masajes')">
+                        <div class="h-48 sm:h-56 bg-[url('https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=300')] bg-cover bg-center"></div>
+                        <div class="p-6">
+                            <h3 class="text-xl sm:text-2xl font-serif font-bold text-gray-800 mb-3">Masajes Terapéuticos</h3>
+                            <p class="text-gray-600 mb-4 text-sm sm:text-base">Relaja tus músculos y libera tensiones con nuestros masajes especializados.</p>
+                            <p class="text-teal-600 font-semibold text-base sm:text-lg">Desde S/150</p>
+                            <button class="mt-4 text-teal-600 font-semibold hover:text-teal-700">Ver más →</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Servicio 2 -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover" onclick="showServiceDetail('faciales')">
+                        <div class="h-48 sm:h-56 bg-[url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=400')] bg-cover bg-center"></div>
+                        <div class="p-6">
+                            <h3 class="text-xl sm:text-2xl font-serif font-bold text-gray-800 mb-3">Tratamientos Faciales</h3>
+                            <p class="text-gray-600 mb-4 text-sm sm:text-base">Rejuvenece tu piel con nuestros tratamientos personalizados.</p>
+                            <p class="text-teal-600 font-semibold text-base sm:text-lg">Desde S/210</p>
+                            <button class="mt-4 text-teal-600 font-semibold hover:text-teal-700">Ver más →</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Servicio 3 -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover" onclick="showServiceDetail('spa')">
+                        <div class="h-48 sm:h-56 bg-[url('https://images.unsplash.com/photo-1635575066917-e788c2bd06b7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=400')] bg-cover bg-center "></div>
+                        <div class="p-6">
+                            <h3 class="text-xl sm:text-2xl font-serif font-bold text-gray-800 mb-3">Spa & Wellness</h3>
+                            <p class="text-gray-600 mb-4 text-sm sm:text-base">Disfruta de nuestras instalaciones de hidroterapia y relajación.</p>
+                            <p class="text-teal-600 font-semibold text-base sm:text-lg">Desde S/120</p>
+                            <button class="mt-4 text-teal-600 font-semibold hover:text-teal-700">Ver más →</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Servicio 4 -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover" onclick="showServiceDetail('corporales')">
+                        <div class="h-48 sm:h-56 bg-[url('https://plus.unsplash.com/premium_photo-1661573787245-1e1201a65755?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=400')] bg-cover bg-center "></div>
+                        <div class="p-6">
+                            <h3 class="text-xl sm:text-2xl font-serif font-bold text-gray-800 mb-3">Tratamientos Corporales</h3>
+                            <p class="text-gray-600 mb-4 text-sm sm:text-base">Exfoliación y nutrición para una piel radiante.</p>
+                            <p class="text-teal-600 font-semibold text-base sm:text-lg">Desde S/180</p>
+                            <button class="mt-4 text-teal-600 font-semibold hover:text-teal-700">Ver más →</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Servicio 5 -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover" onclick="showServiceDetail('parejas')">
+                        <div class="h-48 sm:h-56 bg-[url('https://plus.unsplash.com/premium_photo-1661302895591-91a5f7b45247?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=400')] bg-cover bg-center "></div>
+                        <div class="p-6">
+                            <h3 class="text-xl sm:text-2xl font-serif font-bold text-gray-800 mb-3">Paquetes para Parejas</h3>
+                            <p class="text-gray-600 mb-4 text-sm sm:text-base">Comparte momentos de relajación con tu pareja.</p>
+                            <p class="text-teal-600 font-semibold text-base sm:text-lg">Desde S/450</p>
+                            <button class="mt-4 text-teal-600 font-semibold hover:text-teal-700">Ver más →</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Servicio 6 -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover" onclick="showServiceDetail('diacompleto')">
+                        <div class="h-48 sm:h-56 bg-[url('https://images.unsplash.com/photo-1630595271375-5073a6c0638b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=400')] bg-cover bg-center "></div>
+                        <div class="p-6">
+                            <h3 class="text-xl sm:text-2xl font-serif font-bold text-gray-800 mb-3">Día Completo Spa</h3>
+                            <p class="text-gray-600 mb-4 text-sm sm:text-base">Experiencia completa de bienestar y relajación total.</p>
+                            <p class="text-teal-600 font-semibold text-base sm:text-lg">Desde S/600</p>
+                            <button class="mt-4 text-teal-600 font-semibold hover:text-teal-700">Ver más →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Páginas de Detalles de Servicios -->
+    <!-- Masajes Terapéuticos -->
+    <div id="masajes" class="page">
+        <section class="pt-24 pb-16 bg-white min-h-screen">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <button onclick="showPage('servicios')" class="text-teal-600 font-semibold mb-6 hover:text-teal-700 flex items-center">
+                    ← Volver a Servicios
+                </button>
+                <div class="bg-[url('https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=600')] bg-cover bg-center from-teal-400 to-green-500 h-64 sm:h-96 rounded-2xl mb-8"></div>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6">Masajes Terapéuticos</h1>
+                <p class="text-lg text-gray-600 mb-8">Nuestros masajes terapéuticos están diseñados para aliviar el estrés, reducir tensiones musculares y promover la relajación profunda de todo tu cuerpo.</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">Tipos de Masaje</h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-teal-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Masaje Sueco</h4>
+                                <p class="text-gray-600 mb-1">60 minutos - S/150</p>
+                                <p class="text-gray-600 text-sm">Técnica clásica de relajación muscular con movimientos suaves y circulares.</p>
+                            </div>
+                            <div class="border-l-4 border-teal-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Masaje de Piedras Calientes</h4>
+                                <p class="text-gray-600 mb-1">75 minutos - S/240</p>
+                                <p class="text-gray-600 text-sm">Terapia con piedras volcánicas calientes para relajación profunda.</p>
+                            </div>
+                            <div class="border-l-4 border-teal-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Masaje Deportivo</h4>
+                                <p class="text-gray-600 mb-1">60 minutos - S/190</p>
+                                <p class="text-gray-600 text-sm">Enfocado en recuperación muscular y prevención de lesiones.</p>
+                            </div>
+                            <div class="border-l-4 border-teal-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Masaje de Tejido Profundo</h4>
+                                <p class="text-gray-600 mb-1">60 minutos - S/210</p>
+                                <p class="text-gray-600 text-sm">Técnica intensa para nudos musculares y tensión crónica.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">Beneficios</h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-teal-600 mr-2">✓</span>
+                                Reducción del estrés y la ansiedad
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-600 mr-2">✓</span>
+                                Mejora de la circulación sanguínea
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-600 mr-2">✓</span>
+                                Alivio del dolor muscular y articular
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-600 mr-2">✓</span>
+                                Mejora de la flexibilidad
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-600 mr-2">✓</span>
+                                Promueve un sueño más profundo
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-600 mr-2">✓</span>
+                                Fortalece el sistema inmunológico
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-8 bg-teal-50 p-6 rounded-xl">
+                            <h4 class="font-semibold text-lg mb-2">¿Qué esperar?</h4>
+                            <p class="text-gray-600 text-sm">Tu terapeuta evaluará tus necesidades y adaptará la presión y técnicas según tus preferencias. Ambiente relajante con música suave, aromaterapia y aceites naturales.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-teal-600 to-green-600 rounded-2xl p-8 text-white text-center">
+                    <h3 class="text-2xl font-serif font-bold mb-4">¿Listo para Reservar?</h3>
+                    <p class="mb-6">Experimenta el poder transformador de nuestros masajes terapéuticos</p>
+                    <button onclick="showPage('contacto')" class="bg-white text-teal-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+                        Reservar Ahora
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Tratamientos Faciales -->
+    <div id="faciales" class="page">
+        <section class="pt-24 pb-16 bg-white min-h-screen">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <button onclick="showPage('servicios')" class="text-teal-600 font-semibold mb-6 hover:text-teal-700 flex items-center">
+                    ← Volver a Servicios
+                </button>
+                <div class="bg-[url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=600')] bg-cover bg-center h-64 sm:h-96 rounded-2xl mb-8"></div>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6">Tratamientos Faciales</h1>
+                <p class="text-lg text-gray-600 mb-8">Descubre tratamientos faciales personalizados que rejuvenecen, hidratan y revitalizan tu piel, dejándola radiante y saludable.</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">Nuestros Tratamientos</h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-purple-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Limpieza Profunda</h4>
+                                <p class="text-gray-600 mb-1">60 minutos - S/210</p>
+                                <p class="text-gray-600 text-sm">Elimina impurezas, puntos negros y células muertas para una piel fresca.</p>
+                            </div>
+                            <div class="border-l-4 border-purple-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Facial Anti-edad</h4>
+                                <p class="text-gray-600 mb-1">75 minutos - S/270</p>
+                                <p class="text-gray-600 text-sm">Reduce líneas de expresión y arrugas con ingredientes naturales.</p>
+                            </div>
+                            <div class="border-l-4 border-purple-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Hidratación Intensa</h4>
+                                <p class="text-gray-600 mb-1">60 minutos - S/220</p>
+                                <p class="text-gray-600 text-sm">Recupera la luminosidad con mascarillas hidratantes premium.</p>
+                            </div>
+                            <div class="border-l-4 border-purple-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Facial con Vitamina C</h4>
+                                <p class="text-gray-600 mb-1">60 minutos - S/250</p>
+                                <p class="text-gray-600 text-sm">Ilumina y unifica el tono de piel con antioxidantes potentes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">Beneficios</h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">✓</span>
+                                Piel más luminosa y radiante
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">✓</span>
+                                Reducción de líneas finas y arrugas
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">✓</span>
+                                Mejora la textura de la piel
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">✓</span>
+                                Hidratación profunda
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">✓</span>
+                                Estimula la producción de colágeno
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">✓</span>
+                                Reduce manchas y unifica el tono
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-8 bg-purple-50 p-6 rounded-xl">
+                            <h4 class="font-semibold text-lg mb-2">Productos Premium</h4>
+                            <p class="text-gray-600 text-sm">Utilizamos productos orgánicos certificados y tecnología de vanguardia para garantizar resultados visibles desde la primera sesión.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-8 text-white text-center">
+                    <h3 class="text-2xl font-serif font-bold mb-4">Transforma tu Piel</h3>
+                    <p class="mb-6">Comienza tu viaje hacia una piel más saludable y radiante</p>
+                    <button onclick="showPage('contacto')" class="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+                        Reservar Ahora
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Spa & Wellness -->
+    <div id="spa" class="page">
+        <section class="pt-24 pb-16 bg-white min-h-screen">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <button onclick="showPage('servicios')" class="text-teal-600 font-semibold mb-6 hover:text-teal-700 flex items-center">
+                    ← Volver a Servicios
+                </button>
+                <div class="bg-[url('https://images.unsplash.com/photo-1635575066917-e788c2bd06b7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=700')] bg-cover bg-center h-64 sm:h-96 rounded-2xl mb-8"></div>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6">Spa & Wellness</h1>
+                <p class="text-lg text-gray-600 mb-8">Sumérgete en nuestras instalaciones de hidroterapia diseñadas para restaurar tu equilibrio físico y mental.</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">Experiencias Disponibles</h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-blue-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Circuito de Hidroterapia</h4>
+                                <p class="text-gray-600 mb-1">90 minutos - S/120</p>
+                                <p class="text-gray-600 text-sm">Acceso a sauna, vapor, jacuzzi y duchas de contraste.</p>
+                            </div>
+                            <div class="border-l-4 border-blue-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Aromaterapia</h4>
+                                <p class="text-gray-600 mb-1">60 minutos - S/170</p>
+                                <p class="text-gray-600 text-sm">Sesión personalizada con aceites esenciales puros.</p>
+                            </div>
+                            <div class="border-l-4 border-blue-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Terapia de Flotación</h4>
+                                <p class="text-gray-600 mb-1">60 minutos - S/160</p>
+                                <p class="text-gray-600 text-sm">Tanque de flotación con sales de magnesio para relajación total.</p>
+                            </div>
+                            <div class="border-l-4 border-blue-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Meditación Guiada</h4>
+                                <p class="text-gray-600 mb-1">45 minutos - S/100</p>
+                                <p class="text-gray-600 text-sm">Sesiones grupales de meditación y mindfulness.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">Beneficios</h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">✓</span>
+                                Desintoxicación del organismo
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">✓</span>
+                                Mejora de la circulación
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">✓</span>
+                                Alivio de dolores musculares
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">✓</span>
+                                Reducción del estrés
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">✓</span>
+                                Mejora de la calidad del sueño
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">✓</span>
+                                Equilibrio emocional
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-8 bg-blue-50 p-6 rounded-xl">
+                            <h4 class="font-semibold text-lg mb-2">Instalaciones Premium</h4>
+                            <p class="text-gray-600 text-sm">Nuestras instalaciones de última generación ofrecen un ambiente tranquilo y acogedor para tu total relajación.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl p-8 text-white text-center">
+                    <h3 class="text-2xl font-serif font-bold mb-4">Reconecta con tu Ser Interior</h3>
+                    <p class="mb-6">Disfruta de un espacio diseñado para tu bienestar integral</p>
+                    <button onclick="showPage('contacto')" class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+                        Reservar Ahora
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Tratamientos Corporales -->
+    <div id="corporales" class="page">
+        <section class="pt-24 pb-16 bg-white min-h-screen">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <button onclick="showPage('servicios')" class="text-teal-600 font-semibold mb-6 hover:text-teal-700 flex items-center">
+                    ← Volver a Servicios
+                </button>
+                <div class="bg-[url('https://plus.unsplash.com/premium_photo-1661573787245-1e1201a65755?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=600')] bg-cover bg-center h-64 sm:h-96 rounded-2xl mb-8"></div>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6">Tratamientos Corporales</h1>
+                <p class="text-lg text-gray-600 mb-8">Nutre y renueva tu piel con tratamientos corporales completos que exfolian, hidratan y revitalizan.</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">Tratamientos Disponibles</h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-amber-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Exfoliación Corporal</h4>
+                                <p class="text-gray-600 mb-1">60 minutos - S/180</p>
+                                <p class="text-gray-600 text-sm">Elimina células muertas con sales marinas y aceites naturales.</p>
+                            </div>
+                            <div class="border-l-4 border-amber-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Envoltura de Algas</h4>
+                                <p class="text-gray-600 mb-1">75 minutos - S/220</p>
+                                <p class="text-gray-600 text-sm">Desintoxica y remineraliza la piel con algas marinas.</p>
+                            </div>
+                            <div class="border-l-4 border-amber-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Reflexología Podal</h4>
+                                <p class="text-gray-600 mb-1">45 minutos - S/150</p>
+                                <p class="text-gray-600 text-sm">Masaje terapéutico de pies para equilibrar energías.</p>
+                            </div>
+                            <div class="border-l-4 border-amber-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Envoltura de Chocolate</h4>
+                                <p class="text-gray-600 mb-1">60 minutos - S/210</p>
+                                <p class="text-gray-600 text-sm">Hidratación profunda con cacao orgánico rico en antioxidantes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">Beneficios</h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-amber-600 mr-2">✓</span>
+                                Piel suave y renovada
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-amber-600 mr-2">✓</span>
+                                Mejora la elasticidad cutánea
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-amber-600 mr-2">✓</span>
+                                Estimula la circulación linfática
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-amber-600 mr-2">✓</span>
+                                Reduce la retención de líquidos
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-amber-600 mr-2">✓</span>
+                                Desintoxicación profunda
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-amber-600 mr-2">✓</span>
+                                Relajación total del cuerpo
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-8 bg-amber-50 p-6 rounded-xl">
+                            <h4 class="font-semibold text-lg mb-2">Ingredientes Naturales</h4>
+                            <p class="text-gray-600 text-sm">Utilizamos solo ingredientes orgánicos y naturales: sales del Mar Muerto, algas marinas, aceites esenciales y mantecas vegetales.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-amber-600 to-orange-600 rounded-2xl p-8 text-white text-center">
+                    <h3 class="text-2xl font-serif font-bold mb-4">Renueva tu Piel</h3>
+                    <p class="mb-6">Dale a tu cuerpo el cuidado que merece</p>
+                    <button onclick="showPage('contacto')" class="bg-white text-amber-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+                        Reservar Ahora
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Paquetes para Parejas -->
+    <div id="parejas" class="page">
+        <section class="pt-24 pb-16 bg-white min-h-screen">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <button onclick="showPage('servicios')" class="text-teal-600 font-semibold mb-6 hover:text-teal-700 flex items-center">
+                    ← Volver a Servicios
+                </button>
+                <div class="bg-[url('https://plus.unsplash.com/premium_photo-1661302895591-91a5f7b45247?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=600')] bg-cover bg-center h-64 sm:h-96 rounded-2xl mb-8"></div>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6">Paquetes para Parejas</h1>
+                <p class="text-lg text-gray-600 mb-8">Comparte momentos únicos de relajación y conexión con tu pareja en nuestras exclusivas suites privadas.</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">Paquetes Especiales</h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-rose-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Romance Clásico</h4>
+                                <p class="text-gray-600 mb-1">2 horas - S/450</p>
+                                <p class="text-gray-600 text-sm">Masaje en pareja (60 min) + Circuito de hidroterapia + Copa de vino.</p>
+                            </div>
+                            <div class="border-l-4 border-rose-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Escapada Premium</h4>
+                                <p class="text-gray-600 mb-1">3 horas - S/660</p>
+                                <p class="text-gray-600 text-sm">Masaje de piedras calientes + Facial + Circuito spa + Cena ligera.</p>
+                            </div>
+                            <div class="border-l-4 border-rose-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Luna de Miel</h4>
+                                <p class="text-gray-600 mb-1">4 horas - S/900</p>
+                                <p class="text-gray-600 text-sm">Experiencia completa con todos los servicios + Champagne + Pétalos de rosa.</p>
+                            </div>
+                            <div class="border-l-4 border-rose-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">Aniversario Especial</h4>
+                                <p class="text-gray-600 mb-1">3.5 horas - S/840</p>
+                                <p class="text-gray-600 text-sm">Masaje aromático + Exfoliación + Jacuzzi privado + Picnic gourmet.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">Incluye</h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-rose-600 mr-2">✓</span>
+                                Suite privada para parejas
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-rose-600 mr-2">✓</span>
+                                Decoración romántica con velas
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-rose-600 mr-2">✓</span>
+                                Música relajante personalizada
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-rose-600 mr-2">✓</span>
+                                Bebidas y snacks saludables
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-rose-600 mr-2">✓</span>
+                                Productos aromáticos premium
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-rose-600 mr-2">✓</span>
+                                Albornoz y pantuflas para dos
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-8 bg-rose-50 p-6 rounded-xl">
+                            <h4 class="font-semibold text-lg mb-2">Ocasiones Especiales</h4>
+                            <p class="text-gray-600 text-sm">Ideal para aniversarios, San Valentín, luna de miel o simplemente para reconectar. Podemos personalizar tu experiencia.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-rose-600 to-red-600 rounded-2xl p-8 text-white text-center">
+                    <h3 class="text-2xl font-serif font-bold mb-4">Crea Recuerdos Inolvidables</h3>
+                    <p class="mb-6">Regala momentos de conexión y relajación en pareja</p>
+                    <button onclick="showPage('contacto')" class="bg-white text-rose-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+                        Reservar Ahora
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Día Completo Spa -->
+    <div id="diacompleto" class="page">
+        <section class="pt-24 pb-16 bg-white min-h-screen">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <button onclick="showPage('servicios')" class="text-teal-600 font-semibold mb-6 hover:text-teal-700 flex items-center">
+                    ← Volver a Servicios
+                </button>
+                <div class="bg-[url('https://images.unsplash.com/photo-1630595271375-5073a6c0638b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=600')] bg-cover bg-center h-64 sm:h-96 rounded-2xl mb-8"></div>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6">Día Completo Spa</h1>
+                <p class="text-lg text-gray-600 mb-8">Dedícate un día entero de mimos y bienestar. La experiencia definitiva de relajación total.</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">Tu Día Incluye</h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-emerald-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">9:00 AM - Bienvenida</h4>
+                                <p class="text-gray-600 text-sm">Infusión detox + Orientación personalizada</p>
+                            </div>
+                            <div class="border-l-4 border-emerald-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">9:30 AM - Circuito Hidroterapia</h4>
+                                <p class="text-gray-600 text-sm">Sauna, vapor, jacuzzi y duchas terapéuticas</p>
+                            </div>
+                            <div class="border-l-4 border-emerald-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">11:00 AM - Exfoliación Corporal</h4>
+                                <p class="text-gray-600 text-sm">Tratamiento completo de renovación cutánea</p>
+                            </div>
+                            <div class="border-l-4 border-emerald-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">12:00 PM - Masaje Relajante</h4>
+                                <p class="text-gray-600 text-sm">75 minutos de masaje personalizado</p>
+                            </div>
+                            <div class="border-l-4 border-emerald-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">1:30 PM - Almuerzo Saludable</h4>
+                                <p class="text-gray-600 text-sm">Menú gourmet nutritivo y delicioso</p>
+                            </div>
+                            <div class="border-l-4 border-emerald-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">3:00 PM - Tratamiento Facial</h4>
+                                <p class="text-gray-600 text-sm">Facial premium personalizado</p>
+                            </div>
+                            <div class="border-l-4 border-emerald-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">4:30 PM - Yoga o Meditación</h4>
+                                <p class="text-gray-600 text-sm">Sesión guiada para equilibrio mental</p>
+                            </div>
+                            <div class="border-l-4 border-emerald-600 pl-4">
+                                <h4 class="font-semibold text-lg mb-2">5:30 PM - Reflexología</h4>
+                                <p class="text-gray-600 text-sm">Masaje terapéutico de pies y manos</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">Beneficios Completos</h3>
+                        <ul class="space-y-3 text-gray-600 mb-6">
+                            <li class="flex items-start">
+                                <span class="text-emerald-600 mr-2">✓</span>
+                                Desconexión total del estrés diario
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-emerald-600 mr-2">✓</span>
+                                Renovación física y mental completa
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-emerald-600 mr-2">✓</span>
+                                Nutrición y cuidado integral
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-emerald-600 mr-2">✓</span>
+                                Experiencia personalizada
+                            </li>
+                        </ul>
+
+                        <div class="bg-emerald-50 p-6 rounded-xl mb-6">
+                            <h4 class="font-semibold text-lg mb-2">Precio</h4>
+                            <p class="text-3xl font-bold text-emerald-600 mb-2">S/600</p>
+                            <p class="text-gray-600 text-sm">Incluye todos los servicios, almuerzo, bebidas y amenidades</p>
+                        </div>
+                        
+                        <div class="bg-teal-50 p-6 rounded-xl">
+                            <h4 class="font-semibold text-lg mb-2">Nota Importante</h4>
+                            <p class="text-gray-600 text-sm">Reserva con 48 horas de anticipación. Cupos limitados para garantizar una experiencia exclusiva.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl p-8 text-white text-center">
+                    <h3 class="text-2xl font-serif font-bold mb-4">Regálate un Día de Puro Bienestar</h3>
+                    <p class="mb-6">La inversión más importante que puedes hacer es en ti mismo</p>
+                    <button onclick="showPage('contacto')" class="bg-white text-emerald-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+                        Reservar Ahora
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Página Nosotros -->
+    <div id="nosotros" class="page">
+        <section class="pt-16 py-16 sm:py-20 bg-gradient-to-br from-teal-50 to-green-50 min-h-screen">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6">Sobre VitaSpa</h2>
+                        <p class="text-gray-700 mb-6 text-base sm:text-lg leading-relaxed">
+                            En VitaSpa, creemos que el bienestar integral es la clave para una vida plena y equilibrada. Desde 2015, nos hemos dedicado a proporcionar experiencias de spa excepcionales que nutren el cuerpo, calman la mente y elevan el espíritu.
+                        </p>
+                        <p class="text-gray-700 mb-6 text-base sm:text-lg leading-relaxed">
+                            Nuestro equipo de terapeutas certificados combina técnicas tradicionales con innovaciones modernas para crear tratamientos personalizados que se adaptan a tus necesidades únicas.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-8">
+                            <div class="text-center">
+                                <div class="text-3xl sm:text-4xl font-bold text-teal-600 mb-2">10+</div>
+                                <div class="text-gray-600 text-sm sm:text-base">Años de Experiencia</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl sm:text-4xl font-bold text-teal-600 mb-2">15K+</div>
+                                <div class="text-gray-600 text-sm sm:text-base">Clientes Satisfechos</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl sm:text-4xl font-bold text-teal-600 mb-2">20+</div>
+                                <div class="text-gray-600 text-sm sm:text-base">Tratamientos</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <div class="rounded-2xl overflow-hidden shadow-2xl">
+                            <div class="h-64 sm:h-80 lg:h-96 bg-[url('https://images.unsplash.com/photo-1585815157396-ad62043f721b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470')] bg-cover bg-center"></div>
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 w-32 h-32 sm:w-40 sm:h-40 bg-teal-600 rounded-full opacity-20"></div>
+                        <div class="absolute -top-6 -right-6 w-24 h-24 sm:w-32 sm:h-32 bg-green-600 rounded-full opacity-20"></div>
+                    </div>
+                </div>
+                
+                <!-- Valores -->
+                <div class="mt-12 sm:mt-16">
+                    <h3 class="text-2xl sm:text-3xl font-serif font-bold text-center text-gray-800 mb-8 sm:mb-12">Nuestros Valores</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                        <div class="text-center">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl sm:text-3xl">🌿</span>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2 text-base sm:text-lg">Naturalidad</h4>
+                            <p class="text-gray-600 text-sm sm:text-base">Productos orgánicos y naturales</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl sm:text-3xl">💆</span>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2 text-base sm:text-lg">Profesionalismo</h4>
+                            <p class="text-gray-600 text-sm sm:text-base">Terapeutas certificados</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl sm:text-3xl">✨</span>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2 text-base sm:text-lg">Excelencia</h4>
+                            <p class="text-gray-600 text-sm sm:text-base">Servicio de calidad superior</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl sm:text-3xl">🧘</span>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2 text-base sm:text-lg">Equilibrio</h4>
+                            <p class="text-gray-600 text-sm sm:text-base">Armonía cuerpo y mente</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Página Contacto -->
+    <div id="contacto" class="page">
+        <section class="pt-16 py-16 sm:py-20 bg-white min-h-screen">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 sm:mb-16">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-4">Contáctanos</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg">Estamos aquí para ayudarte. Reserva tu cita o contáctanos para más información</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                    <!-- Formulario -->
+                    <div class="bg-gradient-to-br from-teal-50 to-green-50 rounded-2xl p-6 sm:p-8">
+                        <form id="contactForm">
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">Nombre Completo</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-teal-500 text-sm sm:text-base" required>
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">Email</label>
+                                <input type="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-teal-500 text-sm sm:text-base" required>
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">Teléfono</label>
+                                <input type="tel" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-teal-500 text-sm sm:text-base" required>
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">Servicio de Interés</label>
+                                <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-teal-500 text-sm sm:text-base">
+                                    <option>Masajes Terapéuticos</option>
+                                    <option>Tratamientos Faciales</option>
+                                    <option>Spa & Wellness</option>
+                                    <option>Tratamientos Corporales</option>
+                                    <option>Paquetes para Parejas</option>
+                                    <option>Día Completo Spa</option>
+                                </select>
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">Mensaje</label>
+                                <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-teal-500 text-sm sm:text-base" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-teal-600 text-white py-3 sm:py-4 rounded-lg font-semibold hover:bg-teal-700 transition text-base sm:text-lg">
+                                Enviar Mensaje
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Información de Contacto -->
+                    <div>
+                        <div class="mb-8">
+                            <h3 class="text-xl sm:text-2xl font-serif font-bold text-gray-800 mb-6">Información de Contacto</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                                        <span class="text-lg sm:text-xl">📍</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800 mb-1 text-base sm:text-lg">Dirección</h4>
+                                        <p class="text-gray-600 text-sm sm:text-base">Av. Principal 123, Centro<br>Lima, Perú</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                                        <span class="text-lg sm:text-xl">📞</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800 mb-1 text-base sm:text-lg">Teléfono</h4>
+                                        <p class="text-gray-600 text-sm sm:text-base">+51 999 888 777<br>+51 1 234 5678</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                                        <span class="text-lg sm:text-xl">✉️</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800 mb-1 text-base sm:text-lg">Email</h4>
+                                        <p class="text-gray-600 text-sm sm:text-base">info@vitaspa.pe<br>reservas@vitaspa.pe</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                                        <span class="text-lg sm:text-xl">🕐</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800 mb-1 text-base sm:text-lg">Horario</h4>
+                                        <p class="text-gray-600 text-sm sm:text-base">Lunes - Viernes: 9:00 - 20:00<br>Sábados: 9:00 - 18:00<br>Domingos: 10:00 - 16:00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mapa -->
+                        <div class="bg-gray-200 rounded-2xl h-48 sm:h-64 flex items-center justify-center">
+                            <p class="text-gray-500 text-sm sm:text-base">Mapa de Google Maps</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 sm:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl sm:text-3xl font-serif font-bold text-teal-400 mb-4 cursor-pointer" onclick="showPage('inicio')">VitaSpa</h3>
+                    <p class="text-gray-400 text-sm sm:text-base">Tu oasis de bienestar y relajación</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-base sm:text-lg">Enlaces</h4>
+                    <ul class="space-y-2 text-sm sm:text-base">
+                        <li><a onclick="showPage('inicio')" class="text-gray-400 hover:text-teal-400 transition cursor-pointer">Inicio</a></li>
+                        <li><a onclick="showPage('servicios')" class="text-gray-400 hover:text-teal-400 transition cursor-pointer">Servicios</a></li>
+                        <li><a onclick="showPage('nosotros')" class="text-gray-400 hover:text-teal-400 transition cursor-pointer">Nosotros</a></li>
+                        <li><a onclick="showPage('contacto')" class="text-gray-400 hover:text-teal-400 transition cursor-pointer">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-base sm:text-lg">Servicios</h4>
+                    <ul class="space-y-2 text-sm sm:text-base">
+                        <li class="text-gray-400 cursor-pointer hover:text-teal-400 transition" onclick="showServiceDetail('masajes')">Masajes</li>
+                        <li class="text-gray-400 cursor-pointer hover:text-teal-400 transition" onclick="showServiceDetail('faciales')">Faciales</li>
+                        <li class="text-gray-400 cursor-pointer hover:text-teal-400 transition" onclick="showServiceDetail('spa')">Spa & Wellness</li>
+                        <li class="text-gray-400 cursor-pointer hover:text-teal-400 transition" onclick="showServiceDetail('diacompleto')">Paquetes</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-base sm:text-lg">Síguenos</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-teal-600 rounded-full flex items-center justify-center hover:bg-teal-500 transition">
+                            <span class="text-lg sm:text-xl">f</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-teal-600 rounded-full flex items-center justify-center hover:bg-teal-500 transition">
+                            <span class="text-lg sm:text-xl">📷</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-teal-600 rounded-full flex items-center justify-center hover:bg-teal-500 transition">
+                            <span class="text-lg sm:text-xl">🐦</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400 text-sm sm:text-base">&copy; 2025 VitaSpa. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón WhatsApp Flotante -->
+    <a href="https://wa.me/" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition z-50">
+        <span class="text-2xl sm:text-3xl text-white">💬</span>
+    </a>
+
+    <script>
+        // Sistema de navegación entre páginas
+        function showPage(pageName) {
+            // Ocultar todas las páginas
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Mostrar la página seleccionada
+            const selectedPage = document.getElementById(pageName);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+                selectedPage.classList.add('fade-in');
+                
+                // Scroll al inicio
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Cerrar menú móvil si está abierto
+                document.getElementById('mobileMenu').classList.add('hidden');
+            }
+        }
+        
+        // Función para mostrar detalles de servicios
+        function showServiceDetail(serviceId) {
+            showPage(serviceId);
+        }
+        
+        // Menu móvil
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Formulario de contacto
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
+            contactForm.reset();
+        });
+        
+        // Animación al cargar
+        window.addEventListener('load', () => {
+            const activePage = document.querySelector('.page.active');
+            if (activePage) {
+                activePage.classList.add('fade-in');
+            }
+        });
+    </script>
+</body>
+</html>
